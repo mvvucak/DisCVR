@@ -232,6 +232,19 @@ public class InputPanel extends JPanel implements ActionListener {
 	public void setFileListener(TextListener listener) {
 		this.fileListener = listener;
 	}
+
+	public void resetAll(){
+		sampleFileField.setText("");
+		dbLibraryGroup.clearSelection();
+		customisedDB.setSelected(false);
+		//default setting: all its fields are disabled
+		dbNameLabel.setEnabled(false);
+		dbNameButton.setEnabled(false);
+		entropyLabel.setEnabled(false);
+
+		dbNameField.setEnabled(false);
+		entropyField.setEnabled(false);
+	}
 	
 	//formats the panel with the different components
 	private void initComponents() {

@@ -11,7 +11,7 @@
   <property name="dist.dir" location="dist" />
   <property name="dist.lib.dir" location="${dist.dir}/lib" />
   <property name="lib.dir" location="${basedir}/lib" />
-  <property name="res.dir" location="${basedir}/resources" />
+  <property name="res.dir" location="/resources" />
   <property name="customisedDB.dir" location="${basedir}/customisedDB" />	
   <property name="dist.customisedDB.dir" location="${dist.dir}/customisedDB" />
 
@@ -20,7 +20,7 @@
   	   <fileset dir="lib">
   	    <include name="*.jar"/>
   	   </fileset>
-	   <fileset dir="resources">
+	   <fileset dir="src/resources">
 	  	    <include name="**"/>
 	   </fileset>
   	   <!--fileset dir="images">

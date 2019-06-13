@@ -70,10 +70,18 @@ public class KmersCounting {
         Process proc; 
         
         // This has to be the default settings for KAnalyze, otherwise it will not run on machine with small RAM
-        String command ="java -jar -Xmx1024m "+kAnalyzeDir+"/kanalyze.jar count  -k "+kSize+
+        String command ="java -jar -Xmx3G "+kAnalyzeDir+"/kanalyze.jar count -k "+kSize+
         		            " -o "+ outputFile+" -f "+inputFormat+" "+inputFile+" -rcanonical";
+
+        String command2[] = {"java", "-jar", "-Xmx3G", kAnalyzeDir+"/kanalyze.jar", "count", "-k", kSize+"", "-o",
+				outputFile, "-f", inputFormat, inputFile, "-rcanonical"};
+
+
+//        for(int i=0; i<command2.length; i++){
+//        	System.err.println(command2[i]);
+//		}
         try {
-        	proc = rt.exec(command);
+        	proc = rt.exec(command2);
 
             int interVal = proc.waitFor();
             if (interVal == 0){
