@@ -186,7 +186,7 @@ public class ClassificationWorker extends SwingWorker <VirusResultDatabase, Stri
 				return kmerCountResults;
 			});
 			//If thread takes loner than 5 minutes to return result, throws TimeoutException
-			kC = f.get(30, TimeUnit.MINUTES);
+			kC = f.get(180, TimeUnit.MINUTES);
 			sampleClass.setkC(kC);
 		}
 		catch(final TimeoutException e) {
@@ -254,7 +254,7 @@ public class ClassificationWorker extends SwingWorker <VirusResultDatabase, Stri
                 return tempStatement;
             });
 			//If thread takes loner than 1 minute to return result, throws TimeoutException
-            statement = f.get(1, TimeUnit.MINUTES);
+            statement = f.get(30, TimeUnit.MINUTES);
             sampleClass.setkC(kC);
         }
         catch(final TimeoutException e) {
@@ -294,7 +294,7 @@ public class ClassificationWorker extends SwingWorker <VirusResultDatabase, Stri
                 return fNumOfMatches;
             });
 			//If thread takes loner than 1 minute to return result, throws TimeoutException
-            numOfMatches = f.get(1, TimeUnit.MINUTES);
+            numOfMatches = f.get(60, TimeUnit.MINUTES);
         }
         catch(final TimeoutException e){
 			JOptionPane.showMessageDialog(null, "Kmer matching took too long.",
@@ -333,7 +333,7 @@ public class ClassificationWorker extends SwingWorker <VirusResultDatabase, Stri
                     databaseKmersFile, dbOption, numOfMatches, textPanel, summaryPanel, this, scoring, vrDB,
 					kC, startTime);
             final Future<String> f = summaryService.submit(resultsSummarizer);
-            timeText = f.get(1, TimeUnit.MINUTES);
+            timeText = f.get(30, TimeUnit.MINUTES);
         }
 		//If thread takes loner than 1 minute to return result, throws TimeoutException
         catch(final TimeoutException e){
@@ -379,6 +379,7 @@ public class ClassificationWorker extends SwingWorker <VirusResultDatabase, Stri
 			else {
 				tablePanel.setData(getResultDB());
 				tablePanel.refresh();
+				appFrame.enableClassifyButton();
 			}
 		}
 		catch(final Exception e){

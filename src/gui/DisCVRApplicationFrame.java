@@ -170,7 +170,7 @@ public class DisCVRApplicationFrame extends JFrame {
 		       			  }
 		       		}
 		       	});
-
+		        inputPanel.disableClassifyButton();
 		         //run classification process
 		         controller = new ClassificationWorker(prams,appFrame);
 		         controller.execute();
@@ -192,6 +192,14 @@ public class DisCVRApplicationFrame extends JFrame {
 		splitPane2.setDividerLocation(0.5);
 		
 	}
+
+	public void disableClassifyButton(){
+		inputPanel.disableClassifyButton();
+	}
+
+	public void enableClassifyButton(){
+		inputPanel.enableClassifyButton();
+	}
 	
 	public void resetAllFields(){
 		tablePanel.reset(); //reset table from previous run
@@ -200,6 +208,7 @@ public class DisCVRApplicationFrame extends JFrame {
 		scoring.removeAll();
 		progressPanel.setValue(0);
 		inputPanel.resetAll();
+
 
 		revalidate();
 		repaint();
