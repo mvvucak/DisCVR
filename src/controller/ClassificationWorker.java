@@ -138,7 +138,7 @@ public class ClassificationWorker extends SwingWorker <VirusResultDatabase, Stri
 	 * Executes entire classification process:
 	 * 	Sample KMer analysis using KAnalyze
 	 * 	Database KMer reading and sorting into folders.
-	 *  KMer matching
+	 *  KMer matching between samples and database
 	 *  Results summary and output to GUI.
 	 *  Returns a VirusResultDatabase object if successful.
 	 *  Return null if it encountered an error (such as a TimeOutException).
@@ -185,8 +185,8 @@ public class ClassificationWorker extends SwingWorker <VirusResultDatabase, Stri
 				// Thread.sleep(80000); // Testing timeout function, remove.
 				return kmerCountResults;
 			});
-			//If thread takes loner than 1 minute to return result, throws TimeoutException
-			kC = f.get(1, TimeUnit.MINUTES);
+			//If thread takes loner than 5 minutes to return result, throws TimeoutException
+			kC = f.get(30, TimeUnit.MINUTES);
 			sampleClass.setkC(kC);
 		}
 		catch(final TimeoutException e) {

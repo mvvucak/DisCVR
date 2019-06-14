@@ -25,6 +25,8 @@ import controller.KmersMappingWorker;
 import java.net.URL;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 
 /***
  * Formats the main frame for DisCVR's GUI.
@@ -95,7 +97,9 @@ public class DisCVRApplicationFrame extends JFrame {
 		    		String kAnalyzeDir = actualPath+"/lib";
 
 		    		//make a directory to hold temp files
-		       	    String savingDir = actualPath+"/TempFiles/";
+					long startTime = System.currentTimeMillis();
+					String timeStamp = DateTimeFormatter.ofPattern("HH-mm-ss").format(LocalTime.now());
+		       	    String savingDir = actualPath+"/TempFiles-" + timeStamp + "/";
 
 		       		File directory = new File(savingDir);
 					if (!directory.exists()) {

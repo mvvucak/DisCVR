@@ -44,42 +44,36 @@ public class KmersCounting {
 		 * 1st: remove any k-mer in the file with count is 1 (single-copies k-mers)
 		 * 2nd: remove any k-mer in the file with entropy <= entropythreshold (low-entropy k-mers) 
 		 */
-		
-		String [] tempParms = {parms[0],parms[1],parms[2],"TempFiles/TempKmers",parms[4]}; //TempKmers contains the results of KAnalyze
+		//Extract name of tempFiles directory from absolute path for use by KAnalyze shell call.
+		String tempFilesDir = new File(parms[3]).getParentFile().getName() + "/";
+		String [] tempParms = {parms[0],parms[1],parms[2],tempFilesDir+"TempKmers",parms[4]}; //TempKmers contains the results of KAnalyze
 			
 		runKmersCounting(tempParms);
 			
-		String outFile1 = "TempFiles/badKmers";
+		String outFile1 = tempFilesDir+"badKmers";
 		denoiseKmers(tempParms[3], outFile1, parms[3],entropyThreshold);
 				
 		//delete temporary files
-		deleteFiles("TempFiles","badKmers");
-		deleteFiles("TempFiles","TempKmers");		
+		deleteFiles(tempFilesDir,"badKmers");
+		deleteFiles(tempFilesDir,"TempKmers");
 		
 	}
 	
-	//runs KAnalyze to count k-mers
+	//runs KAnalyze to count k-mers by calling external .jar in lib directory.
    	private void runKmersCounting(String [] parms) {
 		String inputFile = parms[0];
 		int kSize = Integer.parseInt(parms[1]);
 		String inputFormat = parms[2];
 		String outputFile = parms[3];
-		String kAnalyzeDir = parms[4];		
+		String kAnalyzeDir = parms[4]; // Path to kanalyze jar executable
 		
 		Runtime rt = Runtime.getRuntime();
         Process proc; 
         
-        // This has to be the default settings for KAnalyze, otherwise it will not run on machine with small RAM
-        String command ="java -jar -Xmx3G "+kAnalyzeDir+"/kanalyze.jar count -k "+kSize+
-        		            " -o "+ outputFile+" -f "+inputFormat+" "+inputFile+" -rcanonical";
-
+        // Create shell command for KAnalyze. Created as String array for compatibility with Unix shells.
         String command2[] = {"java", "-jar", "-Xmx3G", kAnalyzeDir+"/kanalyze.jar", "count", "-k", kSize+"", "-o",
 				outputFile, "-f", inputFormat, inputFile, "-rcanonical"};
 
-
-//        for(int i=0; i<command2.length; i++){
-//        	System.err.println(command2[i]);
-//		}
         try {
         	proc = rt.exec(command2);
 
@@ -87,7 +81,7 @@ public class KmersCounting {
             if (interVal == 0){
             }
             else{
-              System.out.println("K-mers counting encounted some errors: "+interVal);
+              System.out.println("K-mer counting encountered some errors: "+interVal);
             }   	
         }
         catch (Exception e)
