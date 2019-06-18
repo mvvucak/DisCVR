@@ -110,7 +110,7 @@ public class MenuBarFrame extends JFrame{
 		textArea.append(str);
 		
 		
-		String virusFilePath = "/resources/"+virusFile;
+		String virusFilePath = "/resources/" +virusFile;
 				
 		//upload the file into a table 
 		ArrayList<String> columns = new ArrayList<String>();

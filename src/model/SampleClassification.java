@@ -59,9 +59,8 @@ public class SampleClassification {
 	//split db k-mers into smaller files according to a certain permutation	
 	public String dbFileSplitting (String kmersFile, String fileNamePrefix, String dbOption, String type,int permsPower) {
 			char set[] = {'A', 'C', 'G', 'T'};
-			
 			PermutationFiles PF = new PermutationFiles(permsPower,set.length);
-			String [] perms = PF.getPermsArray();			
+			String [] perms = PF.getPermsArray();
 	        PF.printAllKLength(set,permsPower,perms); //Populate the permutations array
 	        
 	        return PF.printsToDbPermsFiles(kmersFile,fileNamePrefix,  type, dbOption,permsPower, perms);
@@ -310,7 +309,7 @@ private void classifySample (String []parameters) {
 	 
 	 String databaseKmersFile= "";		 
 	 if (dbOption.equals("BuiltInDB")){
-		 databaseKmersFile= "/resources/"+databaseName;
+		 databaseKmersFile= "/resources/" +databaseName;
 		 outputDir = outputDir+databaseName;
 	 }
 	 if(dbOption.equals("customisedDB")){

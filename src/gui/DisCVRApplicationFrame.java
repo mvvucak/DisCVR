@@ -56,7 +56,7 @@ public class DisCVRApplicationFrame extends JFrame {
 	public static final String currentDir = System.getProperty("user.dir");
 	
 	public DisCVRApplicationFrame () {
-		super ("DisCVR"); 
+		super ("DisCVR");
 
 		appFrame = this;
         inputPanel = new InputPanel();		
@@ -94,12 +94,12 @@ public class DisCVRApplicationFrame extends JFrame {
 		    	public void optionEventOccurred(OptionEvent e){
 		    		String actualPath = System.getProperty(DIR_PROPERTY_NAME, currentDir );
 
-		    		String kAnalyzeDir = actualPath+"/lib";
+		    		String kAnalyzeDir = actualPath+File.separator+"lib";
 
 		    		//make a directory to hold temp files
 					long startTime = System.currentTimeMillis();
 					String timeStamp = DateTimeFormatter.ofPattern("HH-mm-ss").format(LocalTime.now());
-		       	    String savingDir = actualPath+"/TempFiles-" + timeStamp + "/";
+		       	    String savingDir = actualPath+File.separator+"TempFiles-" + timeStamp + File.separator;
 
 		       		File directory = new File(savingDir);
 					if (!directory.exists()) {
@@ -146,14 +146,14 @@ public class DisCVRApplicationFrame extends JFrame {
 		        		public void rowDetected (int row, String virusName, String virusTaxaID, int assemblyOption){
 		        			String referenceGenomesFile = "";
 		        			if(dbOption.equalsIgnoreCase("BuiltInDB")){
-		        				referenceGenomesFile =  "/resources/"+dbLibrary+"_referenceGenomesLibrary";
+		        				referenceGenomesFile =  File.separator+ "resources" +File.separator+dbLibrary+"_referenceGenomesLibrary";
 		        			}
 		        			if(dbOption.equalsIgnoreCase("customisedDB")){
 		        				Path p = Paths.get(dbLibrary);
 		        				String file = p.getFileName().toString();
 		        				int kSizeIndex = file.indexOf('_');
 		        				String dbName = file.substring(0,kSizeIndex);
-		        				referenceGenomesFile = actualPath+"/customisedDB/"+dbName+"_referenceGenomesLibrary";
+		        				referenceGenomesFile = actualPath+File.separator+"customisedDB"+File.separator+dbName+"_referenceGenomesLibrary";
 			        		}
 		        			//run read Assembly
 		       			   if(assemblyOption == 1){
@@ -183,7 +183,7 @@ public class DisCVRApplicationFrame extends JFrame {
 		pack();
 		
 		//add the CVR logo to the frame		
-		setIconImage(createIcon("/resources/cvr_logo.gif"));
+		setIconImage(createIcon(File.separator+".."+File.separator+"cvr_logo.gif"));
 		
 		setSize(800,800);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

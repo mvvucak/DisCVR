@@ -230,7 +230,7 @@ public class ClassificationWorker extends SwingWorker <VirusResultDatabase, Stri
         /* Retrieval of database file */
         String databaseKmersFile = "";
         if (dbOption.equals("BuiltInDB")){
-            databaseKmersFile= "/resources/"+dbLibrary+"_"+kSize;
+            databaseKmersFile= File.separator+ ".." +File.separator+dbLibrary+"_"+kSize;
         }
         if(dbOption.equals("customisedDB")){
             databaseKmersFile=dbLibrary;
@@ -247,6 +247,7 @@ public class ClassificationWorker extends SwingWorker <VirusResultDatabase, Stri
         final String finalDbOption = dbOption;
 
         try {
+
             final Future<String> f = databaseExtractionService.submit(() -> {
                 final String fileNamePrefix = savingDir+"db"+"Kmers_"; //prefix for all file names
                 final String tempStatement = sampleClass.dbFileSplitting (finalDatabaseKmersFile, fileNamePrefix,
@@ -265,6 +266,7 @@ public class ClassificationWorker extends SwingWorker <VirusResultDatabase, Stri
         }
         catch (final Exception e)
         {
+        	System.err.println("Here");
             throw new RuntimeException(e);
         }
 
@@ -344,9 +346,10 @@ public class ClassificationWorker extends SwingWorker <VirusResultDatabase, Stri
         }
         catch(final Exception e)
         {
+        	e.printStackTrace();
         }
 
-
+		System.err.println(timeText);
         textPanel.appendText("\nTime taken (hh:mm:ss): "+timeText);
 
         publish("Done!\n\n"); //100% on progress bar

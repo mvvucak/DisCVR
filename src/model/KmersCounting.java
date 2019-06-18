@@ -9,6 +9,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.nio.Buffer;
 import java.util.zip.GZIPInputStream;
 import utilities.EntropyFilter;
 
@@ -45,7 +46,7 @@ public class KmersCounting {
 		 * 2nd: remove any k-mer in the file with entropy <= entropythreshold (low-entropy k-mers) 
 		 */
 		//Extract name of tempFiles directory from absolute path for use by KAnalyze shell call.
-		String tempFilesDir = new File(parms[3]).getParentFile().getName() + "/";
+		String tempFilesDir = new File(parms[3]).getParentFile().getName() + File.separator;
 		String [] tempParms = {parms[0],parms[1],parms[2],tempFilesDir+"TempKmers",parms[4]}; //TempKmers contains the results of KAnalyze
 			
 		runKmersCounting(tempParms);
@@ -71,11 +72,13 @@ public class KmersCounting {
         Process proc; 
         
         // Create shell command for KAnalyze. Created as String array for compatibility with Unix shells.
-        String command2[] = {"java", "-jar", "-Xmx3G", kAnalyzeDir+"/kanalyze.jar", "count", "-k", kSize+"", "-o",
+        String command2[] = {"java", "-jar", "-Xmx3G", kAnalyzeDir+File.separator+"kanalyze.jar", "count", "-k", kSize+"", "-o",
 				outputFile, "-f", inputFormat, inputFile, "-rcanonical"};
 
         try {
-        	proc = rt.exec(command2);
+        	String line;
+        	//proc = rt.exec(command2);
+			proc = rt.exec(command2);
 
             int interVal = proc.waitFor();
             if (interVal == 0){
@@ -135,6 +138,7 @@ public class KmersCounting {
 		 } 
 		 catch (IOException ex)
 	     {
+	     	ex.printStackTrace();
 	    	System.out.println("Errors reading from "+file);	   
 	     }
 		

@@ -1,9 +1,6 @@
 package model;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.util.*;
 import java.util.Map.Entry;
 import java.net.URL;
@@ -38,8 +35,8 @@ public class ClassificationOutput {
     	String nodesFile ="";
     	
     	if(dbOption.equalsIgnoreCase("BuiltInDB")){
-    		namesFile = "/resources/names.dmp";  
-    		nodesFile = "/resources/nodes.dmp";    		
+    		namesFile = File.separator+".."+File.separator+"names.dmp";
+    		nodesFile = File.separator+".."+File.separator+"nodes.dmp";
     	}
     	
     	if(dbOption.equalsIgnoreCase("customisedDB")){
