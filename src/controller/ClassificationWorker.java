@@ -230,7 +230,7 @@ public class ClassificationWorker extends SwingWorker <VirusResultDatabase, Stri
         /* Retrieval of database file */
         String databaseKmersFile = "";
         if (dbOption.equals("BuiltInDB")){
-            databaseKmersFile= File.separator+ ".." +File.separator+dbLibrary+"_"+kSize;
+            databaseKmersFile= dbLibrary+"_"+kSize;
         }
         if(dbOption.equals("customisedDB")){
             databaseKmersFile=dbLibrary;
@@ -349,7 +349,6 @@ public class ClassificationWorker extends SwingWorker <VirusResultDatabase, Stri
         	e.printStackTrace();
         }
 
-		System.err.println(timeText);
         textPanel.appendText("\nTime taken (hh:mm:ss): "+timeText);
 
         publish("Done!\n\n"); //100% on progress bar

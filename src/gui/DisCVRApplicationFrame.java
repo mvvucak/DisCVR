@@ -183,7 +183,7 @@ public class DisCVRApplicationFrame extends JFrame {
 		pack();
 		
 		//add the CVR logo to the frame		
-		setIconImage(createIcon(File.separator+".."+File.separator+"cvr_logo.gif"));
+		setIconImage(createIcon("cvr_logo.gif"));
 		
 		setSize(800,800);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -218,7 +218,7 @@ public class DisCVRApplicationFrame extends JFrame {
 
 	//set the icon for the frame
 	private Image createIcon (String path) {
-		URL url = getClass().getResource(path);		
+		URL url = ClassLoader.getSystemResource(path);
 		if(url == null) {
 			System.err.println("Unable to load image: "+ path);
 		}

@@ -35,8 +35,8 @@ public class ClassificationOutput {
     	String nodesFile ="";
     	
     	if(dbOption.equalsIgnoreCase("BuiltInDB")){
-    		namesFile = File.separator+".."+File.separator+"names.dmp";
-    		nodesFile = File.separator+".."+File.separator+"nodes.dmp";
+    		namesFile = "names.dmp";
+    		nodesFile = "nodes.dmp";
     	}
     	
     	if(dbOption.equalsIgnoreCase("customisedDB")){
@@ -168,7 +168,7 @@ public void setDBIDsMap(String dbFileName, String dbOption){
 		 bf = new BufferedReader( new FileReader(dbFileName));  
 	   }
 	   else{
-		   URL dbFileURL = getClass().getResource(dbFileName);
+		   URL dbFileURL = ClassLoader.getSystemResource(dbFileName);
 		   bf = new BufferedReader(new InputStreamReader(dbFileURL.openStream()));
 	   }
 	   String line; 		    
@@ -209,7 +209,7 @@ public void createNamesMap (String namesDmpFile, String dbOption) {
 	BufferedReader br = null;
 	try	{
 		if(dbOption.equalsIgnoreCase("BuiltInDB")){
-			URL namesFileURL = getClass().getResource(namesDmpFile);
+			URL namesFileURL = ClassLoader.getSystemResource(namesDmpFile);
 			br = new BufferedReader(new InputStreamReader(namesFileURL.openStream()));
 		}
 		if(dbOption.equalsIgnoreCase("customisedDB")){
@@ -239,7 +239,7 @@ public void createRankMap (String nodedDmpFile, String dbOption) {
 	BufferedReader br = null;
 	try {
 		if(dbOption.equalsIgnoreCase("BuiltInDB")){
-			URL namesFileURL = getClass().getResource(nodedDmpFile);
+			URL namesFileURL = ClassLoader.getSystemResource(nodedDmpFile);
 			br = new BufferedReader(new InputStreamReader(namesFileURL.openStream()));
 		}
 		if(dbOption.equalsIgnoreCase("customisedDB")){

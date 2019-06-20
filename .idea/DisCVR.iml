@@ -23,5 +23,14 @@
       </library>
     </orderEntry>
     <orderEntry type="library" name="jcommon-1.0.23" level="project" />
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/resources" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
   </component>
 </module>

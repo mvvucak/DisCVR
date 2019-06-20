@@ -54,7 +54,7 @@ public class PermutationFiles {
 		try	{
 			BufferedReader in = null;			
 			if(dbOption.equalsIgnoreCase("BuiltInDB")){
-			  URL dbFileURL = getClass().getResource(dbFileName);
+			  URL dbFileURL = ClassLoader.getSystemResource(dbFileName);
 			  in = new BufferedReader(new InputStreamReader(dbFileURL.openStream()));			  
 			}
 			if(dbOption.equalsIgnoreCase("customisedDB")){
