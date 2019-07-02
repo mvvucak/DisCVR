@@ -207,7 +207,7 @@ public static void main(String[] args) throws Exception{
 	      if (listOfFiles[i].isFile()) {
 	        System.out.println("File: " + listOfFiles[i].getName());
 	        
-	        sampleClassificationParms[1] = folderPath+"/"+ listOfFiles[i].getName();
+	        sampleClassificationParms[1] = folderPath + File.separator + listOfFiles[i].getName();
 	        setDb(new SampleClassification (sampleClassificationParms));
 	      } 
 	      System.out.println("=================================================================");
@@ -309,7 +309,7 @@ private void classifySample (String []parameters) {
 	 
 	 String databaseKmersFile= "";		 
 	 if (dbOption.equals("BuiltInDB")){
-		 databaseKmersFile= "/resources/" +databaseName;
+		 databaseKmersFile= databaseName;
 		 outputDir = outputDir+databaseName;
 	 }
 	 if(dbOption.equals("customisedDB")){
