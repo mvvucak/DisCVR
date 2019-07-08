@@ -32,15 +32,16 @@ public class ReferenceAssembly {
 		//get the path of a file 		
 		URL location = getClass().getProtectionDomain().getCodeSource().getLocation();
         File file = new File (location.getPath());
+        System.err.println(location.getPath());
         
         //run Tanoti on Windows OS
-        String [] commands = new String[]{"java ","-cp",file.getAbsolutePath(),"tanotipackage.Tanoti","-i",sampleFile,"-r",refFile,"-o",outputFile};
+        //String [] commands = new String[]{"java","-cp",file.getAbsolutePath(),"tanotipackage.Tanoti","-i",sampleFile,"-r",refFile,"-o",outputFile};
 		
         /* when using Linux or Mac OS
-         * uncomment the following lines and comment out the Windows command 
-         * String pathForCommand=".:"+file.getName();
-         * String [] commands = new String[]{"java","-cp",pathForCommand,"tanotipackage.Tanoti","-i",sampleFile,"-r",refFile,"-o",outputFile};
+         * uncomment the following lines and comment out the Windows command
          */
+          String pathForCommand=".:"+file.getName();
+          String [] commands = new String[]{"java","-cp",pathForCommand,"tanotipackage.Tanoti","-i",sampleFile,"-r",refFile,"-o",outputFile};
 				
 		try {
 			FileOutputStream fos = new FileOutputStream(logDir+"Tanoti_log.txt");

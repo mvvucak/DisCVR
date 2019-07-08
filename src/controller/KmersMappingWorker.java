@@ -59,7 +59,7 @@ public class KmersMappingWorker extends SwingWorker <int [][] , String>{
 		if (found){	
 			
 			String actualPath = System.getProperty("user.dir");
-			String outputPath = actualPath+"/KmersMappingTemp_"+taxID+"/";
+			String outputPath = actualPath+File.separator+"KmersMappingTemp_"+taxID+File.separator;
         	
 			//if taxaID exists in the referenceGenomes file
 			//create a directory in the current directory to hold temporary files
@@ -85,7 +85,7 @@ public class KmersMappingWorker extends SwingWorker <int [][] , String>{
 			
 			//get all the matched k-mers into a list of k-mers and their counts
 	        KmersAssembly kA = new KmersAssembly();
-	        ArrayList<Kmers> kmersList = classifier.getAllMatchedKmers ();
+	        ArrayList<Kmers> kmersList = classifier.getAllMatchedKmers();
 	        int [] classifiedKmers = kA.getNumClassifiedKmers (kmersList);
 		        
 		    String refGenome = kA.getRefGenome(refFile);
@@ -96,9 +96,10 @@ public class KmersMappingWorker extends SwingWorker <int [][] , String>{
 		     }
 		     
 		     /*--------------Assembly Using String Matching/Lowest Minimum Distance-------------------*/
+
 			 TreeMap<Integer,ArrayList<MappedKmers>> mappedResults = kA.getAssembledKmersString (refGenome,kmersList,maxMismatchTolerance);
 			 int mappeKmersSize = mappedResults.size();
-			 	
+
 			 if(mappeKmersSize == 0){
 			 }
 				

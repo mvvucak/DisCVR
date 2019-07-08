@@ -40,7 +40,7 @@ public class ReferenceGenomeFile {
 		BufferedReader br = null;
 		try{
 			if (dbOption.equals("BuiltInDB")){
-				 URL refGenURL = getClass().getResource(genomesFile);
+				 URL refGenURL = ClassLoader.getSystemResource(genomesFile);
 				 
 				 if(refGenURL == null) {
 						System.err.println("Unable to load the genome file: "+ genomesFile);

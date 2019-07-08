@@ -62,7 +62,7 @@ public class AlignmentPanel extends JFrame {
 	     add(chartPanel, BorderLayout.CENTER);
 	     
 	     //set icon image for the frame
-	     setIconImage(createIcon("/resources/cvr_logo.gif"));
+	     setIconImage(createIcon("cvr_logo.gif"));
 	 
 	     setSize(640, 480);
 	     setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -123,7 +123,7 @@ public class AlignmentPanel extends JFrame {
 	 
 	//sets the icon for the frame 
 	private Image createIcon (String path) {
-		URL url = getClass().getResource(path);
+		URL url =ClassLoader.getSystemResource(path);
 			
 		if(url == null) {
 			System.err.println("Unable to load image: "+ path);

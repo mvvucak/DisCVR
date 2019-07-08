@@ -284,10 +284,10 @@ public void setNumOfSplit(int num){
      			Thread task [] = new Thread [2];
      			for (int j=0; j<2; j++)	{
      				//Windows OS
-     				preProcCmd [j]=wkDir+"/tanoti_preprocessor.exe "+readFile[j]+" "+(j+1);
+     				//preProcCmd [j]=wkDir+"/tanoti_preprocessor.exe "+readFile[j]+" "+(j+1);
      				/*Comment the above line and uncomment the following line if using Linux and Mac OS*/
              		//Linux and Mac OS
-     				//preProcCmd [j]=wkDir+"/TANOTI_PREPROCESSOR "+readFile[j]+" "+(j+1);
+     				preProcCmd [j]=wkDir+File.separator+"TANOTI_PREPROCESSOR "+readFile[j]+" "+(j+1);
          			task [j]= new Thread(new ExecutorTask(preProcCmd [j],file));
          			task[j].start();
      			}

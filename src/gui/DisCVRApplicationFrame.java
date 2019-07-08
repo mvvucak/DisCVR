@@ -146,7 +146,7 @@ public class DisCVRApplicationFrame extends JFrame {
 		        		public void rowDetected (int row, String virusName, String virusTaxaID, int assemblyOption){
 		        			String referenceGenomesFile = "";
 		        			if(dbOption.equalsIgnoreCase("BuiltInDB")){
-		        				referenceGenomesFile =  File.separator+ "resources" +File.separator+dbLibrary+"_referenceGenomesLibrary";
+		        				referenceGenomesFile =  dbLibrary+"_referenceGenomesLibrary";
 		        			}
 		        			if(dbOption.equalsIgnoreCase("customisedDB")){
 		        				Path p = Paths.get(dbLibrary);

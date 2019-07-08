@@ -75,6 +75,7 @@ public class KmersCounting {
         String command2[] = {"java", "-jar", "-Xmx3G", kAnalyzeDir+File.separator+"kanalyze.jar", "count", "-k", kSize+"", "-o",
 				outputFile, "-f", inputFormat, inputFile, "-rcanonical"};
 
+
         try {
         	String line;
         	//proc = rt.exec(command2);

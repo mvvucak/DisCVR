@@ -70,7 +70,7 @@ public class KmersMappingPanel extends JFrame {
          
          add(chartPanel, BorderLayout.CENTER);
 	     
-	     setIconImage(createIcon("/resources/cvr_logo.gif"));
+	     setIconImage(createIcon("cvr_logo.gif"));
 	 
 	     setSize(640, 480);
 	     setLocationRelativeTo(null);
@@ -186,7 +186,7 @@ public class KmersMappingPanel extends JFrame {
 
     //sets the icon for the frame 
 	private Image createIcon (String path) {
-			URL url = getClass().getResource(path);
+			URL url = ClassLoader.getSystemResource(path);
 			
 			if(url == null) {
 				System.err.println("Unable to load image: "+ path);
